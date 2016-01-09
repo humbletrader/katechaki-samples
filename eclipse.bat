@@ -1,0 +1,1 @@
+mvn eclipse:eclipse -Declipse.useProjectReferences=false

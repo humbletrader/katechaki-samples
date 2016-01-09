@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+   "http://www.springframework.org/dtd/spring-beans.dtd">
+ 
+<beans>
+  	<bean id="expensesReport" class="net.sf.reportengine.FlatReport">
+    	<property name="title" value="Spring Configured Report" />
+    	<property name="showTotals" value="true" />
+    	<property name="showGrandTotal" value="true"/>
+    	<property name="showDataRows" value="true" />
+    	
+    	<property name="in" ref="input"/>
+    	<property name="out" ref="output"/>	
+    	
+    	<property name="groupColumns">
+    		<list>
+    			<bean class="net.sf.reportengine.config.DefaultGroupColumn">
+  					<property name="header" value="Month"/>
+  					<property name="inputColumnIndex" value="0"/>
+  					<property name="groupingLevel" value="0"/>
+  				</bean>
+    		</list>
+    	</property>
+    	
+    	<property name="dataColumns">
+    		<list>
+  				<bean class="net.sf.reportengine.config.DefaultDataColumn">
+  					<property name="header" value="Spent On"/>
+  					<property name="inputColumnIndex" value="1"/>
+  				</bean>
+  				<bean class="net.sf.reportengine.config.DefaultDataColumn">
+  					<property name="header" value="Amount"/>
+  					<property name="inputColumnIndex" value="2"/>
+  					<property name="calculator">
+  						<bean 	class="net.sf.reportengine.core.calc.SumGroupCalculator" />
+  					</property>
+  				</bean>
+  			</list>
+    	</property>        	
+  	</bean>
+	
+	<!-- THE INPUT -->
+	<bean id="input" class="net.sf.reportengine.in.TextInput">
+		<property name="filePath" value="./inputData/expenses.csv"/>
+		<property name="separator" value=","/>
+	</bean>
+  	
+  	<!-- THE OUTPUT -->
+  	<bean id="output" class="net.sf.reportengine.out.HtmlOutput">
+  		<property name="filePath" value="./output/springConfiguredReport.html"/>
+	</bean>
+	
+</beans>

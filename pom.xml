@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.reportengine</groupId>
+  <artifactId>samples</artifactId>
+  <version>0.12.0</version>
+  <name>ReportengineSamples</name>
+  <description>Sample reports created with reportengine</description>
+  
+  <build>
+    <plugins>
+    	<plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-compiler-plugin</artifactId>
+        	<version>2.0.2</version>
+        	<configuration>
+          		<source>1.6</source>
+          		<target>1.6</target>
+        	</configuration>
+      	</plugin>
+      	
+      	<!--  
+      	<plugin>
+      		<artifactId>maven-assembly-plugin</artifactId>
+        	<version>2.1</version>
+        	<configuration>
+          		<descriptorRefs>
+            			<descriptorRef>jar-with-dependencies</descriptorRef>
+          		</descriptorRefs>
+          		<archive>
+      				<manifest>
+   						<mainClass>net.sf.reportengine.samples.ForexReport</mainClass>
+      				</manifest>
+    			</archive>
+        	</configuration>
+       	</plugin>
+      	-->
+      	
+      	<plugin>
+        	<groupId>org.codehaus.mojo</groupId>
+        	<artifactId>exec-maven-plugin</artifactId>
+        	<executions>
+          		<execution>
+            		<goals>
+              			<goal>java</goal>
+            		</goals>
+          		</execution>
+        	</executions>
+ 
+        	<configuration>
+          		<mainClass>net.sf.reportengine.samples.flat.autoconfig.SortedAutoconfigFlatReport</mainClass>
+        	</configuration>
+      	</plugin>
+            	
+    </plugins>
+  </build>
+      
+  <dependencies>
+  
+  	<dependency>
+  		<groupId>net.sf.reportengine</groupId>
+  		<artifactId>reportengine</artifactId>
+  		<version>0.13.0-SNAPSHOT</version>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring</artifactId>
+  		<version>2.5.6</version>
+  	</dependency>
+  	
+  	<dependency>
+    	<groupId>org.hsqldb</groupId>
+    	<artifactId>hsqldb</artifactId>
+    	<version>2.2.9</version>
+	</dependency>
+	
+	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-log4j12</artifactId>
+  		<version>1.7.5</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.15</version>
+    	<exclusions>
+    		<exclusion>
+      			<groupId>javax.mail</groupId>
+      			<artifactId>mail</artifactId>
+    		</exclusion>
+    		<exclusion>
+      			<groupId>javax.jms</groupId>
+      			<artifactId>jms</artifactId>
+    		</exclusion>
+    		<exclusion>
+      			<groupId>com.sun.jdmk</groupId>
+      			<artifactId>jmxtools</artifactId>
+    		</exclusion>
+    		<exclusion>
+      			<groupId>com.sun.jmx</groupId>
+      			<artifactId>jmxri</artifactId>
+    		</exclusion>
+  		</exclusions>
+    		
+    </dependency>
+  </dependencies>
+</project>
